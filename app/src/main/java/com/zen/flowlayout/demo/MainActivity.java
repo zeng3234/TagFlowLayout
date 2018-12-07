@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
             "MultipleChoice",
             "ChangeMode",
             "ClickEvent",
-            "ScrollView"
+            "ScrollView",
+            "SampleTag"
     };
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
                         return new EventFragment();
                     case 5:
                         return new ScrollViewFragment();
+                    case 6:
+                        return new SampleTagFragment();
                     default:
                         return new SingleChoiceFragment();
                 }
