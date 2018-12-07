@@ -12,12 +12,14 @@ import com.zen.flowlayout.R;
 public class MainActivity extends AppCompatActivity {
 
     private String[] titles = new String[]{
-            "SingleChoice", "LimitChoice",
+            "SampleTag",
+            "SingleChoice",
+            "LimitChoice",
             "MultipleChoice",
             "ChangeMode",
             "ClickEvent",
-            "ScrollView",
-            "SampleTag"
+            "ScrollView"
+
     };
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -34,19 +36,20 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0:
-                        return new SingleChoiceFragment();
-                    case 1:
-                        return new LimitChoiceFragment();
-                    case 2:
-                        return new MultipleChoiceFragment();
-                    case 3:
-                        return new ChangeModeFragment();
-                    case 4:
-                        return new EventFragment();
-                    case 5:
-                        return new ScrollViewFragment();
-                    case 6:
                         return new SampleTagFragment();
+                    case 1:
+                        return new SingleChoiceFragment();
+                    case 2:
+                        return new LimitChoiceFragment();
+                    case 3:
+                        return new MultipleChoiceFragment();
+                    case 4:
+                        return new ChangeModeFragment();
+                    case 5:
+                        return new EventFragment();
+                    case 6:
+                        return new ScrollViewFragment();
+
                     default:
                         return new SingleChoiceFragment();
                 }

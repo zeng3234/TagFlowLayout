@@ -23,6 +23,7 @@ public class SampleTagFragment extends Fragment {
                     "Android", "Weclome", "Button ImageView"};
 
     private TagFlowLayout mFlowLayout;
+    private TagFlowLayout mFlowLayout2;
 
     @Nullable
     @Override
@@ -45,6 +46,16 @@ public class SampleTagFragment extends Fragment {
                 return false;
             }
         });
+        //
+        mFlowLayout2 = view.findViewById(R.id.flowlayout2);
+//        mFlowLayout2.setChoiceMode(TagFlowLayout.CHOICE_MODE_LIMIT);
+//        mFlowLayout2.setLimit(3);
+        mFlowLayout2.setAdapter(new TagAdapter<String>(mVals) {
+            @Override
+            public View getView(int position, String str) {
+                return buildTagView2(str);
+            }
+        });
         return view;
     }
 
@@ -59,10 +70,25 @@ public class SampleTagFragment extends Fragment {
         builder.margin(5, 5, 5, 5);
         builder.padding(35, 10, 35, 10);
         builder.radius(15);
-//        builder.bg(TagItemView.Builder.TYPE_RECTANGLE, Color.WHITE,2,Color.YELLOW);
         builder.bg(TagItemView.Builder.TYPE_CIRCLE, Color.WHITE, 2, Color.GREEN);
         builder.bgSelected(Color.WHITE, Color.RED);
         builder.lastFixWidth(true);
+        builder.textColorSelector(Color.GRAY, Color.RED);
+        TagItemView itemView = builder.build();
+        itemView.setText(pstr);
+        return itemView;
+    }
+
+    private TextView buildTagView2(String pstr) {
+        TagItemView.Builder builder = new TagItemView.Builder(getContext());
+        builder.wh(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        builder.margin(5, 5, 5, 5);
+        builder.padding(35, 10, 35, 10);
+        builder.radius(15);
+        builder.bg(TagItemView.Builder.TYPE_RECTANGLE, Color.WHITE, 2, Color.BLUE);
+        builder.bgSelected(Color.WHITE, Color.RED);
+        builder.lastFixWidth(true);
+        builder.textColorSelector(Color.GRAY, Color.RED);
         TagItemView itemView = builder.build();
         itemView.setText(pstr);
         return itemView;

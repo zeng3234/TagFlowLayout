@@ -7,7 +7,13 @@
 
     <com.zen.flowlayout.TagFlowLayout
         android:id="@+id/flowlayout"
-        android:padding="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="10dp" />
+
+    <com.zen.flowlayout.TagFlowLayout
+        android:id="@+id/flowlayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp" />
 </LinearLayout>

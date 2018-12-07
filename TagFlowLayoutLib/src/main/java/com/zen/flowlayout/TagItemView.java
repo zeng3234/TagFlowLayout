@@ -2,6 +2,7 @@ package com.zen.flowlayout;
 
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
@@ -65,6 +66,7 @@ public class TagItemView extends TextView implements IFixWidthView {
             Drawable selectedBg = buildSelectedBg();
             StateListDrawable drawable = new StateListDrawable();
             drawable.addState(new int[]{android.R.attr.state_selected}, selectedBg);//  状态  , 设置按下的图片
+            drawable.addState(new int[]{android.R.attr.state_pressed}, selectedBg);//  状态  , 设置按下的图片
             drawable.addState(new int[]{}, normalBg);//默认状态,默认状态下的图片
             setBg(drawable);
         } else {
@@ -91,6 +93,15 @@ public class TagItemView extends TextView implements IFixWidthView {
         return drawable;
     }
 
+    private static ColorStateList buildColorSelector(int normalColor, int selectedColor) {
+        int[] colors = new int[]{selectedColor, selectedColor, normalColor};
+        int[][] states = new int[3][];
+        states[0] = new int[]{android.R.attr.state_pressed};
+        states[1] = new int[]{android.R.attr.state_selected};
+        states[2] = new int[]{};
+        ColorStateList list = new ColorStateList(states, colors);
+        return list;
+    }
 
     private Drawable buildNormalBg() {
         if (type == Builder.TYPE_CIRCLE) {
@@ -112,6 +123,11 @@ public class TagItemView extends TextView implements IFixWidthView {
     }
 
 
+    /**
+     * 用于打印当前的半径，半圆形时，可获取该值，用于设置padding
+     *
+     * @return
+     */
     public String test_getRadiusStr() {
         int dp = px2dp(getContext(), radius);
         return "px: " + radius + " dp: " + dp;
@@ -142,6 +158,13 @@ public class TagItemView extends TextView implements IFixWidthView {
             btn.sBgColor = sBgColor;
             btn.sStrokeColor = sStrokeColor;
             btn.lastFixWidth = lastFixWidth;
+            if (nTextColor != -1) {
+                if (sTextColor != -1) {
+                    btn.setTextColor(buildColorSelector(nTextColor, sTextColor));
+                } else {
+                    btn.setTextColor(nTextColor);
+                }
+            }
             return btn;
         }
 
@@ -174,6 +197,9 @@ public class TagItemView extends TextView implements IFixWidthView {
         boolean needSelector = false;
         //
         boolean lastFixWidth = false;
+        //
+        int nTextColor = -1;
+        int sTextColor = -1;
 
 
         /**
@@ -280,6 +306,17 @@ public class TagItemView extends TextView implements IFixWidthView {
             this.sBgColor = bgColor;
             this.sStrokeColor = strokeColor;
             this.needSelector = true;
+            return this;
+        }
+
+        public Builder textColor(int normalColor) {
+            this.nTextColor = normalColor;
+            return this;
+        }
+
+        public Builder textColorSelector(int normalColor, int selectedColor) {
+            this.nTextColor = normalColor;
+            this.sTextColor = selectedColor;
             return this;
         }
 
