@@ -20,7 +20,7 @@ Android tagView ,可单选，多选
 
 
 #### 效果图
-![image](https://note.youdao.com/yws/api/personal/file/CBBA3E6C896642528D804795CAE328D3?method=download&shareKey=4f32ae0b0cf095dede713a74629f1c81)
+<img src="tagflowlayout.gif" width="543px"/>
 
 
 
